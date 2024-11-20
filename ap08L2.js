@@ -80,6 +80,28 @@ export function init(scene, size, id, offset, texture){
     makeBuilding(-50, -25, 3);
     makeBuilding(-70, -15, 2);
     makeBuilding(-60, -40, 4);
+    //自由違法建築物///////////////////////////
+    // 立方体の作成
+    const geometry = new THREE.BoxGeometry(10, 10, 10);
+    const material = new THREE.MeshPhysicalMaterial({ 
+        color: 0xD8BFD8,        
+        metalness: 0,           
+        roughness: 0,            
+        transparency: true,      
+        opacity: 0.9,            
+        clearcoat: 1,          
+        clearcoatRoughness: 0,   
+        reflectivity: 1, 
+        ior: 1.5 
+    });
+    const cube = new THREE.Mesh(geometry, material);
+
+
+    // 立方体の位置を空中に設定
+    cube.position.set(-50, 50, 0);
+    cube.rotation.x = Math.PI / 4;
+    scene.add(cube);
+    /////////////////////////////////////////
     // コース(描画)
     // 制御点を補間して曲線を作る
     course = new THREE.CatmullRomCurve3(
@@ -147,6 +169,7 @@ export function resize() {
     const sizeR = 0.2 * window.innerWidth;
     renderer.setSize(sizeR, sizeR);
 }
+
 const clock = new THREE.Clock();
     const carPosition = new THREE.Vector3();
     const carTarget = new THREE.Vector3();
@@ -159,3 +182,19 @@ const clock = new THREE.Clock();
     camera.lookAt(car.position.x, car.position.y, car.position.z);
     renderer.render(scene, camera);
 }
+//逆回り、ヒント２のパート変更はしてない
+/*
+const clock = new THREE.Clock();
+    const carPosition = new THREE.Vector3();
+    const carTarget = new THREE.Vector3();
+    export function render(scene, car){
+    const time = (clock.getElapsedTime() / 20);
+    const reverseTime = 1 - (time % 1);
+    course.getPointAt(reverseTime, carPosition);
+    car.position.copy(carPosition);
+    course.getPointAt ((reverseTime - 0.01 + 1) % 1, carTarget);
+    car.lookAt(carTarget);
+    camera.lookAt(car.position.x, car.position.y, car.position.z);
+    renderer.render(scene, camera);
+}
+*/
