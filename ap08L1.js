@@ -19,11 +19,10 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 25, 40],
-    [5,50],
-    [-5,60],
-    [-100,70],
-    [-100,20],
-    [-75,20],
+    [5,-25],
+    [40,-35],
+    [40,-20],
+    [30,-20],
     [-50,-20]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -83,7 +82,7 @@ export function init(scene, size, id, offset, texture) {
 
     const ballR = 10;
     const ball = new THREE.Mesh(
-      new THREE.SphereGeometry(ballR, 1, 1),
+      new THREE.SphereGeometry(ballR, 12, 1),
       new THREE.MeshPhongMaterial({ color: 0x808080, shininess: 100, specular: 0xa0a0a0 })
     );
     ball.geometry.computeBoundingSphere();
@@ -92,7 +91,7 @@ export function init(scene, size, id, offset, texture) {
 
     makeBuilding(10,20,2);
     makeBuilding(-10,-20,0);
-    makeBuilding(50,-50,2);
+    makeBuilding(40,-40,2);
 
     // コース(描画)
     //
