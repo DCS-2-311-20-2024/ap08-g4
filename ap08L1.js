@@ -19,9 +19,9 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 25, 40],
-    [5,-50],
-    [50,-50],
-    [50,-20],
+    [5,-25],
+    [40,-35],
+    [40,-20],
     [30,-20],
     [-50,-20]
 ]
@@ -91,7 +91,7 @@ export function init(scene, size, id, offset, texture) {
 
     makeBuilding(10,20,2);
     makeBuilding(-10,-20,0);
-    makeBuilding(50,-50,2);
+    makeBuilding(40,-40,2);
 
     // コース(描画)
     //
