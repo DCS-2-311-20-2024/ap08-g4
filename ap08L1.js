@@ -52,10 +52,11 @@ export function init(scene, size, id, offset, texture) {
 
     // ビル
     function makeBuilding(x,z,type){
-        const height = [2,2,7,4,5];
-        const bldgH = height[type]*50;
+        const height = [20,2,30,4,5];
+        const bldgH = height[type]*5;
         const geometry = new THREE.BoxGeometry(8,bldgH,8);
-        const material = new THREE.MeshLambertMaterial({color: 0x808080});
+        texture.wrapT = THREE.RepeatWrapping;
+        const material = new THREE.MeshLambertMaterial({map: texture});
         const sideUvS = (type*2+1)/11;
         const sideUvE = (type*2+2)/11;
         const topUvS = (type*2+2)/11;
@@ -76,10 +77,22 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(0,50,0);
+        bldg.position.set(x,bldgH/2,z);
         scene.add(bldg)
     }
-    makeBuilding(20,20,0)
+
+    const ballR = 10;
+    const ball = new THREE.Mesh(
+      new THREE.SphereGeometry(ballR, 1, 1),
+      new THREE.MeshPhongMaterial({ color: 0x808080, shininess: 100, specular: 0xa0a0a0 })
+    );
+    ball.geometry.computeBoundingSphere();
+    ball.position.set(70,20,-10)
+    scene.add(ball);
+
+    makeBuilding(10,20,2);
+    makeBuilding(-10,-20,0);
+    makeBuilding(50,-50,2);
 
     // コース(描画)
     //
