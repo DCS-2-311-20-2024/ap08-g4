@@ -21,7 +21,7 @@ export const controlPoints = [
     [-50, 20],
     [  5,  0],
     [ 15,  9],
-    [ 36, 32],
+    [ 35, 30],
     [ 25,-40]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -73,11 +73,50 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(x, type, z);
+        bldg.position.set(x, blidgH/2, z);
         scene.add(bldg);
     }
     makeBuliding(45,30,2);
-    makeBuliding(45,50,0)
+    makeBuliding(45,50,0);
+    makeBuliding(70,30,3);
+    makeBuliding(70,20,4);
+    // 歩道橋
+    function pedestrianBridge(scene, x, y, z, bridgeLength, position = { x: 0, y: 0, z: 0 }) {
+        const stepCount = 10;
+        const material = new THREE.MeshLambertMaterial({ color: 0x808080 });
+
+        function createStairs(offsetX, direction) {
+            for (let i = 0; i < stepCount; i++) {
+                const stepHeight = y / stepCount;
+                const stepDepth = z;
+                const stepWidth = x;
+
+                const stepGeometry = new THREE.BoxGeometry(stepWidth, stepHeight, stepDepth);
+                const step = new THREE.Mesh(stepGeometry, material);
+
+                step.position.set(
+                    offsetX + position.x,
+                    (i * stepHeight) + stepHeight / 2 + position.y,
+                    direction * (i * stepDepth) + position.z
+                );
+
+                scene.add(step);
+            }
+        }
+
+        createStairs(-bridgeLength / 2, 1);
+        createStairs(bridgeLength / 2, -1);
+
+        const bridgeGeometry = new THREE.BoxGeometry(bridgeLength, y / stepCount, z * stepCount);
+        const bridge = new THREE.Mesh(bridgeGeometry, material);
+        bridge.position.set(position.x, y + position.y, position.z);
+        scene.add(bridge);
+    }
+
+    // 呼び出し部分
+    pedestrianBridge(scene, 5, 5, 1, 15, { x: 85, y: 0, z: 50 });
+
+    
 
     // コース(描画)
     //制御点を補間して曲線を作る
