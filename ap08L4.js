@@ -81,9 +81,10 @@ export function init(scene, size, id, offset, texture) {
     makeBuliding(70,30,3);
     makeBuliding(70,20,4);
     // 歩道橋
+    /*
     function pedestrianBridge(scene, x, y, z, bridgeLength, position = { x: 0, y: 0, z: 0 }) {
         const stepCount = 10;
-        const material = new THREE.MeshLambertMaterial({ color: 0x808080 });
+        const material = new THREE.MeshLambertMaterial({ color: 0xa9ceec });
 
         function createStairs(offsetX, direction) {
             for (let i = 0; i < stepCount; i++) {
@@ -115,6 +116,7 @@ export function init(scene, size, id, offset, texture) {
 
     // 呼び出し部分
     pedestrianBridge(scene, 5, 5, 1, 15, { x: 85, y: 0, z: 50 });
+    */
 
     
 
