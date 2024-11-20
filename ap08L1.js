@@ -52,7 +52,7 @@ export function init(scene, size, id, offset, texture) {
 
     // ビル
     function makeBuilding(x,z,type){
-        const height = [2,2,30,4,5];
+        const height = [20,2,30,4,5];
         const bldgH = height[type]*5;
         const geometry = new THREE.BoxGeometry(8,bldgH,8);
         texture.wrapT = THREE.RepeatWrapping;
@@ -80,7 +80,9 @@ export function init(scene, size, id, offset, texture) {
         bldg.position.set(x,bldgH/2,z);
         scene.add(bldg)
     }
-    makeBuilding(20,20,2)
+    makeBuilding(20,20,2);
+    makeBuilding(-10,-20,0);
+    makeBuilding(50,-50,2);
 
     // コース(描画)
     //
