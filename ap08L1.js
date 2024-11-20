@@ -80,7 +80,17 @@ export function init(scene, size, id, offset, texture) {
         bldg.position.set(x,bldgH/2,z);
         scene.add(bldg)
     }
-    makeBuilding(20,20,2);
+
+    const ballR = 10;
+    const ball = new THREE.Mesh(
+      new THREE.SphereGeometry(ballR, 1, 1),
+      new THREE.MeshPhongMaterial({ color: 0x808080, shininess: 100, specular: 0xa0a0a0 })
+    );
+    ball.geometry.computeBoundingSphere();
+    ball.position.set(70,20,-10)
+    scene.add(ball);
+
+    makeBuilding(10,20,2);
     makeBuilding(-10,-20,0);
     makeBuilding(50,-50,2);
 
