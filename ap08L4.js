@@ -114,7 +114,6 @@ export function init(scene, size, id, offset, texture) {
         scene.add(bridge);
     }
 
-    // 呼び出し部分
     pedestrianBridge(scene, 5, 5, 1, 15, { x: 85, y: 0, z: 50 });
     */
 
