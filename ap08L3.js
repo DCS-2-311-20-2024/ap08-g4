@@ -49,7 +49,7 @@ export function init(scene, size, id, offset, texture) {
 
     // ビル
     function makeBuilding(x,z,type){
-        const height = [2,2,7,4,5];
+        const height = [3,4,7,4,5];
         const bldgh = height[type]*5;
         const geometry = new THREE.BoxGeometry(8,bldgh,8);
         const material = new THREE.MeshLambertMaterial({map: texture});
@@ -76,7 +76,8 @@ export function init(scene, size, id, offset, texture) {
     }
     makeBuilding(-85,30,2);
     makeBuilding(-40,10,0);
-    makeBuilding(-45,60,0);
+    makeBuilding(-45,60,1);
+    makeBuilding(-58,55,4);
     // コース(描画)
     course = new THREE.CatmullRomCurve3(
         controlPoints.map((p)=>{
